@@ -1,0 +1,630 @@
+/* COMPREHENSIVE CSS FIXES FOR LIFEMAKERS EGYPT VOLUNTEER PLATFORM */
+
+/* ========================================
+   1. THEME SYSTEM FIXES
+   ======================================== */
+
+/* Ensure theme classes are applied to body */
+body.light-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #333333;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --border-color: #dee2e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-bg: #ffffff;
+    --input-bg: #ffffff;
+    --modal-bg: #ffffff;
+    --toast-bg: #333333;
+    --toast-color: #ffffff;
+}
+
+body.dark-theme {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #808080;
+    --border-color: #404040;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --card-bg: #2d2d2d;
+    --input-bg: #404040;
+    --modal-bg: #2d2d2d;
+    --toast-bg: #ffffff;
+    --toast-color: #333333;
+}
+
+/* ========================================
+   2. FILE UPLOAD STYLES
+   ======================================== */
+
+.file-upload-container {
+    position: relative;
+    margin-top: 10px;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--input-bg);
+    color: var(--text-secondary);
+}
+
+.file-upload-label:hover {
+    border-color: var(--primary-blue);
+    background-color: var(--bg-secondary);
+}
+
+.file-upload-label i {
+    margin-left: 8px;
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+.image-preview {
+    margin-top: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* ========================================
+   3. CATEGORY OPTIONS
+   ======================================== */
+
+.category-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.category-option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--input-bg);
+    color: var(--text-primary);
+}
+
+.category-option:hover {
+    border-color: var(--primary-blue);
+    background-color: var(--bg-secondary);
+}
+
+.category-option.selected {
+    border-color: var(--primary-blue);
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.category-option i {
+    margin-left: 8px;
+    font-size: 16px;
+}
+
+/* ========================================
+   4. QUICK ACTIONS
+   ======================================== */
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.action-card i {
+    font-size: 24px;
+    color: var(--primary-blue);
+    margin-bottom: 8px;
+}
+
+.action-card span {
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* ========================================
+   5. RECENT ACTIVITY
+   ======================================== */
+
+.recent-activity {
+    margin: 20px 0;
+}
+
+.recent-activity h3 {
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.activity-list {
+    margin-top: 15px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+.activity-item i {
+    color: var(--primary-blue);
+    margin-left: 12px;
+    font-size: 16px;
+}
+
+.activity-content p {
+    margin: 0;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.activity-content small {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* ========================================
+   6. MOBILE RESPONSIVENESS FIXES
+   ======================================== */
+
+/* Top Volunteers Page Mobile Fixes */
+@media (max-width: 480px) {
+    .top-volunteers-container {
+        padding: 10px;
+    }
+    
+    .volunteer-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .volunteer-avatar {
+        margin: 0 auto 10px auto;
+    }
+    
+    .volunteer-info {
+        text-align: center;
+    }
+    
+    .volunteer-stats {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .volunteer-rank {
+        position: static;
+        margin: 10px auto;
+    }
+}
+
+/* Rewards Page Mobile Fixes */
+@media (max-width: 480px) {
+    .rewards-container {
+        padding: 10px;
+    }
+    
+    .hero-rewards-section {
+        margin: 10px 0;
+    }
+    
+    .hero-reward-card {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .hero-reward-image {
+        margin: 0 auto 15px auto;
+    }
+    
+    .reward-categories-section {
+        margin: 15px 0;
+    }
+    
+    .categories-scroll {
+        padding: 0 10px;
+    }
+    
+    .category-chip {
+        margin: 0 5px;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .rewards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .reward-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* Communities Page Mobile Fixes */
+@media (max-width: 480px) {
+    .communities-container {
+        padding: 10px;
+    }
+    
+    .community-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .community-avatar {
+        margin: 0 auto 10px auto;
+    }
+    
+    .community-info {
+        text-align: center;
+    }
+    
+    .community-stats {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .join-btn {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+/* General Mobile Optimizations */
+@media (max-width: 480px) {
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .action-card {
+        padding: 15px;
+    }
+    
+    .category-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .activity-item {
+        padding: 10px;
+    }
+    
+    .mobile-optimized {
+        padding: 10px !important;
+    }
+    
+    .mobile-optimized .card,
+    .mobile-optimized .reward-card,
+    .mobile-optimized .community-card,
+    .mobile-optimized .volunteer-card {
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+}
+
+/* ========================================
+   7. PROFILE STYLES
+   ======================================== */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.profile-info h2 {
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+}
+
+.user-role {
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.user-location {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px var(--shadow-color);
+}
+
+.stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.profile-actions {
+    margin-top: 20px;
+}
+
+/* ========================================
+   8. ENHANCED MODAL STYLES
+   ======================================== */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--modal-bg);
+    border-radius: 12px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ========================================
+   9. ENHANCED BUTTON STYLES
+   ======================================== */
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    background: var(--primary-blue-dark);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--bg-tertiary);
+}
+
+/* ========================================
+   10. TOAST NOTIFICATIONS
+   ======================================== */
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--toast-bg);
+    color: var(--toast-color);
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    z-index: 1001;
+    display: none;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.toast.success {
+    background: #28a745;
+}
+
+.toast.error {
+    background: #dc3545;
+}
+
+.toast.warning {
+    background: #ffc107;
+    color: #333;
+}
+
+.toast.info {
+    background: #17a2b8;
+}
+
+/* ========================================
+   11. THEME BUTTON STYLES
+   ======================================== */
+
+.theme-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:hover {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.theme-btn.active {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+/* ========================================
+   12. MOBILE VIEW CLASS
+   ======================================== */
+
+.mobile-view {
+    /* Additional mobile-specific styles */
+}
+
+.mobile-view .page {
+    padding: 8px;
+}
+
+.mobile-view .page-header {
+    padding: 12px 8px;
+    margin: -8px -8px 15px -8px;
+}
+
+.mobile-view .home-header {
+    padding: 20px 15px;
+    margin: -8px -8px 20px -8px;
+    border-radius: 0 0 20px 20px;
+}

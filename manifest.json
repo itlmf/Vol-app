@@ -1,0 +1,85 @@
+{
+    "name": "تطبيق المتطوعين",
+    "short_name": "المتطوعين",
+    "description": "تطبيق شامل لإدارة أنشطة المتطوعين والفعاليات",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007bff",
+    "orientation": "portrait",
+    "scope": "/",
+    "lang": "ar",
+    "dir": "rtl",
+    "categories": ["social", "lifestyle", "productivity"],
+    "screenshots": [
+        {
+            "src": "/screenshot-1.png",
+            "sizes": "375x812",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ],
+    "icons": [
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Ccircle cx='96' cy='96' r='96' fill='%23007bff'/%3E%3Cpath d='M96 40c-8 0-16 4-20 12l-20 36c-4 8-4 16 0 24l20 36c4 8 12 12 20 12s16-4 20-12l20-36c4-8 4-16 0-24l-20-36c-4-8-12-12-20-12z' fill='white'/%3E%3Ccircle cx='76' cy='76' r='8' fill='%23007bff'/%3E%3Ccircle cx='116' cy='76' r='8' fill='%23007bff'/%3E%3Cpath d='M76 100c4 8 12 16 20 16s16-8 20-16' stroke='%23007bff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='256' fill='%23007bff'/%3E%3Cpath d='M256 100c-20 0-40 10-50 30l-50 90c-10 20-10 40 0 60l50 90c10 20 30 30 50 30s40-10 50-30l50-90c10-20 10-40 0-60l-50-90c-10-20-30-30-50-30z' fill='white'/%3E%3Ccircle cx='216' cy='196' r='16' fill='%23007bff'/%3E%3Ccircle cx='296' cy='196' r='16' fill='%23007bff'/%3E%3Cpath d='M216 260c10 20 30 40 40 40s30-20 40-40' stroke='%23007bff' stroke-width='8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 72'%3E%3Ccircle cx='36' cy='36' r='36' fill='%23007bff'/%3E%3Cpath d='M36 15c-6 0-12 3-15 9l-15 27c-3 6-3 12 0 18l15 27c3 6 9 9 15 9s12-3 15-9l15-27c3-6 3-12 0-18l-15-27c-3-6-9-9-15-9z' fill='white'/%3E%3Ccircle cx='28' cy='28' r='6' fill='%23007bff'/%3E%3Ccircle cx='44' cy='28' r='6' fill='%23007bff'/%3E%3Cpath d='M28 40c3 6 9 12 8 12s5-6 8-12' stroke='%23007bff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E",
+            "sizes": "72x72",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "تسجيل حضور QR",
+            "short_name": "QR",
+            "description": "تسجيل الحضور باستخدام رمز QR",
+            "url": "/?action=qr",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%2328a745'/%3E%3Crect x='8' y='8' width='80' height='80' fill='white'/%3E%3Crect x='16' y='16' width='16' height='16' fill='%2328a745'/%3E%3Crect x='64' y='16' width='16' height='16' fill='%2328a745'/%3E%3Crect x='16' y='64' width='16' height='16' fill='%2328a745'/%3E%3Crect x='48' y='48' width='8' height='8' fill='%2328a745'/%3E%3C/svg%3E",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "الأحداث",
+            "short_name": "الأحداث",
+            "description": "عرض الأحداث والفعاليات",
+            "url": "/?page=events",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23ff6b35'/%3E%3Crect x='16' y='24' width='64' height='56' rx='4' fill='white'/%3E%3Crect x='24' y='16' width='8' height='16' fill='white'/%3E%3Crect x='64' y='16' width='8' height='16' fill='white'/%3E%3Cline x1='24' y1='40' x2='72' y2='40' stroke='%23ff6b35' stroke-width='2'/%3E%3C/svg%3E",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "الملف الشخصي",
+            "short_name": "الملف",
+            "description": "عرض الملف الشخصي والإنجازات",
+            "url": "/?page=profile",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Ccircle cx='48' cy='48' r='48' fill='%23007bff'/%3E%3Ccircle cx='48' cy='36' r='16' fill='white'/%3E%3Cpath d='M20 80c0-16 12-28 28-28s28 12 28 28' fill='white'/%3E%3C/svg%3E",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "edge_side_panel": {
+        "preferred_width": 400
+    }
+}

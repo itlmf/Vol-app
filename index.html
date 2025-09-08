@@ -1,0 +1,2861 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق المتطوعين</title>
+    <meta name="description" content="تطبيق شامل لإدارة أنشطة المتطوعين والفعاليات">
+    <meta name="theme-color" content="#007bff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="المتطوعين">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Ccircle cx='96' cy='96' r='96' fill='%23007bff'/%3E%3Cpath d='M96 40c-8 0-16 4-20 12l-20 36c-4 8-4 16 0 24l20 36c4 8 12 12 20 12s16-4 20-12l20-36c4-8 4-16 0-24l-20-36c-4-8-12-12-20-12z' fill='white'/%3E%3Ccircle cx='76' cy='76' r='8' fill='%23007bff'/%3E%3Ccircle cx='116' cy='76' r='8' fill='%23007bff'/%3E%3Cpath d='M76 100c4 8 12 16 20 16s16-8 20-16' stroke='%23007bff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+                
+                <!-- Login Page -->
+                <div class="page active login-page" id="login-page">
+                    <div class="login-container">
+                        <div class="app-logo">
+                            <div class="life-makers-logo">
+                                <img src="logo (1).png" alt="">
+                            </div>
+                            <h1>تطبيق المتطوعين</h1>
+                        </div>
+                        
+                        <form class="login-form" onsubmit="event.preventDefault(); login();">
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="login-username" placeholder="اسم المستخدم" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="login-password" placeholder="كلمة المرور" required>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">
+                                تسجيل الدخول
+                            </button>
+                        </form>
+                        
+                        
+                        
+                        <div class="login-links">
+                            <a href="#" class="forgot-password">نسيت كلمة السر؟</a>
+                            <a href="#" onclick="navigateTo('signup-page')" class="create-account">إنشاء حساب جديد</a>
+                            <a href="#" onclick="navigateTo('home-page')" class="guest-login">دخول كضيف</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sign Up Page -->
+                <div class="page signup-page" id="signup-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('login-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>إنشاء حساب جديد</h2>
+                    </div>
+                    
+                    <div class="signup-container">
+                        <form class="signup-form">
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" placeholder="الاسم الكامل" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" placeholder="البريد الإلكتروني" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" placeholder="رقم الهاتف" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" placeholder="كلمة السر" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <select required>
+                                    <option value="">اختر المحافظة</option>
+                                    <option value="cairo">القاهرة</option>
+                                    <option value="alexandria">الإسكندرية</option>
+                                    <option value="giza">الجيزة</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-group">
+                                <i class="fas fa-users"></i>
+                                <select required>
+                                    <option value="">اختر المجموعة</option>
+                                    <option value="group1">المجموعة الأولى</option>
+                                    <option value="group2">المجموعة الثانية</option>
+                                    <option value="group3">المجموعة الثالثة</option>
+                                </select>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" required>
+                                <label for="terms">أوافق على الشروط والأحكام</label>
+                            </div>
+                            
+                            <button type="button" class="btn-primary" onclick="showRegistrationSuccess()">
+                                تسجيل
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Home Dashboard -->
+                <div class="page" id="home-page">
+                    <div class="home-header">
+                        <div class="logo-section">
+                            <div class="life-makers-logo">
+                                <img src="logo (1).png" alt="logo">
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <div class="user-avatar" onclick="navigateTo('profile-page')">
+                                <div class="avatar-container">
+                                    <div class="avatar-initial">أ</div>
+                                    <div class="avatar-status online"></div>
+                                </div>
+                            </div>
+                            <div class="user-details">
+                                <h3>أحمد محمد</h3>
+                                <span class="user-rank">
+                                    <i class="fas fa-star"></i>
+                                    متطوع نشط
+                                </span>
+                            </div>
+                        </div>
+                        <div class="header-actions">
+                            <div class="notification-icon" onclick="toggleNotifications()">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-badge">8</span>
+                                <div class="notification-dropdown" id="notification-dropdown">
+                                    <div class="notification-header">
+                                        <h4>الإشعارات</h4>
+                                        <button onclick="markAllAsRead()">تحديد الكل كمقروء</button>
+                                    </div>
+                                    <div class="notification-list">
+                                        <div class="notification-item unread">
+                                            <i class="fas fa-calendar-check"></i>
+                                            <div class="notification-content">
+                                                <p>فعالية جديدة: تنظيف الشواطئ</p>
+                                                <small>منذ 5 دقائق</small>
+                                            </div>
+                                        </div>
+                                        <div class="notification-item unread">
+                                            <i class="fas fa-trophy"></i>
+                                            <div class="notification-content">
+                                                <p>مبروك! حصلت على 50 نقطة جديدة</p>
+                                                <small>منذ 15 دقيقة</small>
+                                            </div>
+                                        </div>
+                                        <div class="notification-item">
+                                            <i class="fas fa-users"></i>
+                                            <div class="notification-content">
+                                                <p>انضم 3 متطوعين جدد للمجموعة</p>
+                                                <small>منذ ساعة</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number">1,250</span>
+                                <span class="stat-label">النقاط</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number">#15</span>
+                                <span class="stat-label">الترتيب</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Navigation Tabs -->
+                    <div class="navigation-tabs">
+                        <div class="tab-item active" onclick="navigateTo('top-volunteers-page')">
+                            <div class="tab-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="tab-content">
+                                <h4>المتطوعون المتميزون</h4>
+                                <p>شاهد التصنيف والمنافسة</p>
+                            </div>
+                            <i class="fas fa-chevron-left tab-arrow"></i>
+                        </div>
+                        
+                        <div class="tab-item" onclick="navigateTo('journey-page')">
+                            <div class="tab-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div class="tab-content">
+                                <h4>رحلة التطوع</h4>
+                                <p>تتبع تقدمك وإنجازاتك</p>
+                            </div>
+                            <i class="fas fa-chevron-left tab-arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="qr-section">
+                        <button class="qr-btn" onclick="showQRScanner()">
+                            <i class="fas fa-qrcode"></i>
+                            <span>تسجيل حضور بالـ QR</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Actions Section -->
+                    <div class="quick-actions-section">
+                        <h4>إجراءات سريعة</h4>
+                        <div class="quick-actions-grid">
+                            <button class="quick-action-btn" onclick="createNewPost()">
+                                <i class="fas fa-plus"></i>
+                                <span>منشور جديد</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="createNewEvent()">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>فعالية جديدة</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="uploadCertificate()">
+                                <i class="fas fa-upload"></i>
+                                <span>رفع شهادة</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- News Feed Section -->
+                    <div class="news-feed-section">
+                        <div class="feed-header">
+                            <h4>آخر الأخبار والمنشورات</h4>
+                            <div class="feed-filters">
+                                <button class="filter-btn active" data-filter="all">الكل</button>
+                                <button class="filter-btn" data-filter="announcements">إعلانات</button>
+                                <button class="filter-btn" data-filter="achievements">إنجازات</button>
+                                <button class="filter-btn" data-filter="events">فعاليات</button>
+                            </div>
+                        </div>
+
+                        <div class="feed-container">
+                            <!-- Featured Announcement -->
+                            <div class="post-card featured" data-category="announcements">
+                                <div class="post-header">
+                                    <div class="post-author">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23007bff'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E" alt="إدارة التطوع">
+                                        <div class="author-info">
+                                            <h5>إدارة التطوع</h5>
+                                            <span class="post-time">منذ ساعتين</span>
+                                        </div>
+                                    </div>
+                                    <div class="post-badge featured">
+                                        <i class="fas fa-star"></i>
+                                        <span>مميز</span>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <h4>فعالية تنظيف الشواطئ - الإسكندرية</h4>
+                                    <p>انضم إلينا في حملة تنظيف شواطئ الإسكندرية هذا الأسبوع. سنقوم بتنظيف 5 كيلومترات من الشاطئ مع أكثر من 200 متطوع.</p>
+                                    <div class="post-image">
+                                        <i class="fas fa-water"></i>
+                                    </div>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="action-btn" onclick="likePost(this)">
+                                        <i class="fas fa-heart"></i>
+                                        <span>45</span>
+                                    </button>
+                                    <button class="action-btn" onclick="commentPost(this)">
+                                        <i class="fas fa-comment"></i>
+                                        <span>12</span>
+                                    </button>
+                                    <button class="action-btn" onclick="sharePost(this)">
+                                        <i class="fas fa-share"></i>
+                                        <span>مشاركة</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Achievement Post -->
+                            <div class="post-card" data-category="achievements">
+                                <div class="post-header">
+                                    <div class="post-author">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23ff6b35'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E" alt="سارة أحمد">
+                                        <div class="author-info">
+                                            <h5>سارة أحمد</h5>
+                                            <span class="post-time">منذ 3 ساعات</span>
+                                        </div>
+                                    </div>
+                                    <div class="post-badge achievement">
+                                        <i class="fas fa-trophy"></i>
+                                        <span>إنجاز</span>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <h4>مبروك! حصلت على شهادة الإسعافات الأولية</h4>
+                                    <p>أتممت بنجاح دورة الإسعافات الأولية وحصلت على شهادة معتمدة. شكراً لجميع المدربين والمتطوعين الذين ساعدوني في هذه الرحلة.</p>
+                                    <div class="achievement-showcase">
+                                        <div class="achievement-icon">
+                                            <i class="fas fa-certificate"></i>
+                                        </div>
+                                        <div class="achievement-details">
+                                            <h6>شهادة الإسعافات الأولية</h6>
+                                            <span>20 ساعة تدريبية • 95%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="action-btn" onclick="likePost(this)">
+                                        <i class="fas fa-heart"></i>
+                                        <span>28</span>
+                                    </button>
+                                    <button class="action-btn" onclick="commentPost(this)">
+                                        <i class="fas fa-comment"></i>
+                                        <span>8</span>
+                                    </button>
+                                    <button class="action-btn" onclick="sharePost(this)">
+                                        <i class="fas fa-share"></i>
+                                        <span>مشاركة</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Event Post -->
+                            <div class="post-card" data-category="events">
+                                <div class="post-header">
+                                    <div class="post-author">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2328a745'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EM%3C/text%3E%3C/svg%3E" alt="محمد علي">
+                                        <div class="author-info">
+                                            <h5>محمد علي</h5>
+                                            <span class="post-time">منذ 5 ساعات</span>
+                                        </div>
+                                    </div>
+                                    <div class="post-badge event">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>فعالية</span>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <h4>ورشة تدريبية - مهارات القيادة</h4>
+                                    <p>سأقوم بتنظيم ورشة تدريبية في مهارات القيادة للمتطوعين الجدد. الورشة ستكون يوم الجمعة من 10 صباحاً حتى 2 ظهراً.</p>
+                                    <div class="event-preview">
+                                        <div class="event-details">
+                                            <span><i class="fas fa-clock"></i> الجمعة 10:00 ص - 2:00 م</span>
+                                            <span><i class="fas fa-map-marker-alt"></i> مركز الشباب - القاهرة</span>
+                                            <span><i class="fas fa-users"></i> 15 متطوع مسجل</span>
+                                        </div>
+                                        <button class="btn-primary" onclick="registerEvent(this)">تسجيل</button>
+                                    </div>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="action-btn" onclick="likePost(this)">
+                                        <i class="fas fa-heart"></i>
+                                        <span>32</span>
+                                    </button>
+                                    <button class="action-btn" onclick="commentPost(this)">
+                                        <i class="fas fa-comment"></i>
+                                        <span>15</span>
+                                    </button>
+                                    <button class="action-btn" onclick="sharePost(this)">
+                                        <i class="fas fa-share"></i>
+                                        <span>مشاركة</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load More Button -->
+                        <div class="load-more-section">
+                            <button class="btn-outline" onclick="loadMorePosts()">
+                                <i class="fas fa-chevron-down"></i>
+                                عرض المزيد
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Admin/Moderator Tools (Role-based) -->
+                    <div class="admin-tools-section" id="admin-tools" style="display: none;">
+                        <h4>أدوات الإدارة</h4>
+                        <div class="admin-tools-grid">
+                            <button class="admin-tool-btn" onclick="navigateTo('pending-posts')">
+                                <i class="fas fa-clock"></i>
+                                <span>المنشورات المعلقة</span>
+                                <span class="badge">5</span>
+                            </button>
+                            <button class="admin-tool-btn" onclick="navigateTo('user-management')">
+                                <i class="fas fa-users-cog"></i>
+                                <span>إدارة المستخدمين</span>
+                            </button>
+                            <button class="admin-tool-btn" onclick="navigateTo('reports')">
+                                <i class="fas fa-flag"></i>
+                                <span>التقارير</span>
+                                <span class="badge">3</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Journey/Milestones Page -->
+                <div class="page" id="journey-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>رحلة التطوع</h2>
+                        <div class="header-actions">
+                            <button class="home-nav-btn" onclick="navigateTo('home-page')" title="العودة للرئيسية">
+                                <i class="fas fa-home"></i>
+                            </button>
+                            <div class="points-badge">
+                                <i class="fas fa-star"></i>
+                                <span>1,250</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-container">
+                        <!-- Current Level Section -->
+                        <div class="current-level-card">
+                            <div class="level-header">
+                                <div class="level-icon">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <div class="level-info">
+                                    <h3>متطوع نشط</h3>
+                                    <p>المستوى 3 من 5</p>
+                                </div>
+                                <div class="level-progress-circle">
+                                    <svg class="progress-ring" width="60" height="60">
+                                        <circle class="progress-ring-circle" stroke="#e9ecef" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+                                        <circle class="progress-ring-circle progress-ring-fill" stroke="#007bff" stroke-width="4" fill="transparent" r="26" cx="30" cy="30" stroke-dasharray="163.36" stroke-dashoffset="49"/>
+                                    </svg>
+                                    <span class="progress-text">70%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="level-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <div>
+                                        <span class="stat-number">12</span>
+                                        <span class="stat-label">فعالية مكتملة</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <span class="stat-number">48</span>
+                                        <span class="stat-label">ساعة تطوع</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-users-helping"></i>
+                                    <div>
+                                        <span class="stat-number">2</span>
+                                        <span class="stat-label">سنة خبرة</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="next-milestone">
+                                <h4>المعلم التالي</h4>
+                                <div class="milestone-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 70%"></div>
+                                    </div>
+                                    <span class="progress-label">350 نقطة للمستوى التالي</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Journey Timeline -->
+                        <div class="journey-timeline">
+                            <h4>خط زمني للإنجازات</h4>
+                            
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-marker">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-header">
+                                            <h5>متطوع مبتدئ</h5>
+                                            <span class="timeline-date">يناير 2023</span>
+                                        </div>
+                                        <p>بداية رحلة التطوع الأولى</p>
+                                        <div class="timeline-rewards">
+                                            <span class="reward-badge">+100 نقطة</span>
+                                            <span class="reward-badge">شارة البداية</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-marker">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-header">
+                                            <h5>متطوع ملتزم</h5>
+                                            <span class="timeline-date">مارس 2023</span>
+                                        </div>
+                                        <p>مشاركة في 5 فعاليات متتالية</p>
+                                        <div class="timeline-rewards">
+                                            <span class="reward-badge">+200 نقطة</span>
+                                            <span class="reward-badge">شارة الالتزام</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item current">
+                                    <div class="timeline-marker current">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-header">
+                                            <h5>متطوع نشط</h5>
+                                            <span class="timeline-date">الآن</span>
+                                        </div>
+                                        <p>تطوع لأكثر من 40 ساعة</p>
+                                        <div class="timeline-rewards">
+                                            <span class="reward-badge">+300 نقطة</span>
+                                            <span class="reward-badge">شارة النشاط</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item upcoming">
+                                    <div class="timeline-marker upcoming">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-header">
+                                            <h5>متطوع خبير</h5>
+                                            <span class="timeline-date">قريباً</span>
+                                        </div>
+                                        <p>قيادة 3 فرق تطوعية</p>
+                                        <div class="timeline-rewards">
+                                            <span class="reward-badge locked">+500 نقطة</span>
+                                            <span class="reward-badge locked">شارة الخبرة</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item upcoming">
+                                    <div class="timeline-marker upcoming">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-header">
+                                            <h5>متطوع أسطوري</h5>
+                                            <span class="timeline-date">الهدف النهائي</span>
+                                        </div>
+                                        <p>100 ساعة تطوع + 20 فعالية</p>
+                                        <div class="timeline-rewards">
+                                            <span class="reward-badge locked">+1000 نقطة</span>
+                                            <span class="reward-badge locked">تاج الإنجاز</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Achievements Showcase -->
+                        <div class="achievements-section">
+                            <h4>الشارات المحققة</h4>
+                            <div class="badges-grid">
+                                <div class="badge-item earned">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-seedling"></i>
+                                    </div>
+                                    <h6>حامي البيئة</h6>
+                                    <p>5 فعاليات بيئية</p>
+                                </div>
+                                
+                                <div class="badge-item earned">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <h6>قلب كبير</h6>
+                                    <p>مساعدة الأيتام</p>
+                                </div>
+                                
+                                <div class="badge-item earned">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <h6>دائم الحضور</h6>
+                                    <p>لم يتغيب عن فعالية</p>
+                                </div>
+                                
+                                <div class="badge-item locked">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <h6>قائد الفريق</h6>
+                                    <p>قيادة 3 فرق</p>
+                                </div>
+                                
+                                <div class="badge-item locked">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <h6>المعلم</h6>
+                                    <p>تدريب 10 متطوعين</p>
+                                </div>
+                                
+                                <div class="badge-item locked">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <h6>البطل</h6>
+                                    <p>المركز الأول شهرياً</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="journey-actions">
+                            <button class="btn-primary" onclick="navigateTo('explore-page')">
+                                <i class="fas fa-search"></i>
+                                استكشف فرص جديدة
+                            </button>
+                            <button class="btn-secondary" onclick="shareJourney()">
+                                <i class="fas fa-share"></i>
+                                شارك إنجازاتك
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+
+                </div>
+
+                <!-- Profile Page -->
+                <div class="page" id="profile-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>الملف الشخصي</h2>
+                    </div>
+
+                    <div class="profile-container">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23007bff'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E" alt="صورة المستخدم">
+                            </div>
+                            <h3>أحمد محمد</h3>
+                            <div class="qr-code">
+                                <div class="qr-placeholder">
+                                    <i class="fas fa-qrcode"></i>
+                                    <p>QR الخاص بك</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-stats">
+                            <div class="profile-stat">
+                                <span class="stat-number">1,250</span>
+                                <span class="stat-label">النقاط الكلية</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="stat-number">#15</span>
+                                <span class="stat-label">الترتيب الحالي</span>
+                            </div>
+                        </div>
+
+                        <div class="achievements">
+                            <h4>الشارات</h4>
+                            <div class="achievement-list">
+                                <div class="achievement-item">
+                                    <i class="fas fa-medal"></i>
+                                    <span>متطوع مميز</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-heart"></i>
+                                    <span>قلب كبير</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>دائم الحضور</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-tabs">
+                            <div class="tab-buttons">
+                                <button class="tab-btn active" onclick="switchTab('friends')">الأصدقاء</button>
+                                <button class="tab-btn" onclick="switchTab('activities')">النشاطات</button>
+                            </div>
+                            
+                            <div class="tab-content" id="friends-tab">
+                                <div class="friend-item">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23ff6b35'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E" alt="صديق">
+                                    <div class="friend-info">
+                                        <h5>سارة أحمد</h5>
+                                        <span>850 نقطة</span>
+                                    </div>
+                                </div>
+                                <div class="friend-item">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2328a745'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EM%3C/text%3E%3C/svg%3E" alt="صديق">
+                                    <div class="friend-info">
+                                        <h5>محمد علي</h5>
+                                        <span>1,100 نقطة</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content hidden" id="activities-tab">
+                                <div class="activity-item">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <div class="activity-info">
+                                        <h5>ورشة الإسعافات الأولية</h5>
+                                        <span>أمس - 50 نقطة</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-leaf"></i>
+                                    <div class="activity-info">
+                                        <h5>فعالية تنظيف الحديقة</h5>
+                                        <span>الأسبوع الماضي - 75 نقطة</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button class="btn-secondary">
+                                <i class="fas fa-edit"></i>
+                                تعديل البيانات
+                            </button>
+                            <button class="btn-secondary">
+                                <i class="fas fa-share"></i>
+                                مشاركة QR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Page -->
+                <div class="page" id="events-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>الأحداث والفعاليات</h2>
+                    </div>
+
+                    <div class="search-filter-section">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="البحث في الفعاليات..." id="events-search" oninput="filterEvents()">
+                        </div>
+                        
+                        <div class="filter-section">
+                            <div class="filter-buttons">
+                                <button class="filter-btn active" data-filter="all">الكل</button>
+                                <button class="filter-btn" data-filter="educational">تعليمية</button>
+                                <button class="filter-btn" data-filter="environmental">بيئية</button>
+                                <button class="filter-btn" data-filter="social">اجتماعية</button>
+                                <button class="filter-btn" data-filter="health">صحية</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="events-container">
+                        <div class="event-card" data-category="health" data-title="ورشة الإسعافات الأولية" data-location="مركز الشباب - القاهرة">
+                            <div class="event-image">
+                                <i class="fas fa-first-aid"></i>
+                            </div>
+                            <div class="event-info">
+                                <h4>ورشة الإسعافات الأولية</h4>
+                                <div class="event-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>مركز الشباب - القاهرة</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>غداً - 10:00 ص</span>
+                                    </div>
+                                </div>
+                                <div class="event-status registered">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>مسجل</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-danger" onclick="cancelRegistration(this)">إلغاء التسجيل</button>
+                                <button class="btn-primary" onclick="openQRScanner()">
+                                    <i class="fas fa-qrcode"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="event-card" data-category="environmental" data-title="حملة زراعة الأشجار" data-location="الحديقة المركزية">
+                            <div class="event-image">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="event-info">
+                                <h4>حملة زراعة الأشجار</h4>
+                                <div class="event-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>الحديقة المركزية</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>الجمعة - 8:00 ص</span>
+                                    </div>
+                                </div>
+                                <div class="event-status available">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <span>متاح للتسجيل</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-primary" onclick="registerEvent(this)">تسجيل</button>
+                            </div>
+                        </div>
+
+                        <div class="event-card" data-category="educational" data-title="قراءة للأطفال" data-location="مكتبة الطفل">
+                            <div class="event-image">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <div class="event-info">
+                                <h4>قراءة للأطفال</h4>
+                                <div class="event-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>مكتبة الطفل</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>السبت - 4:00 م</span>
+                                    </div>
+                                </div>
+                                <div class="event-status available">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <span>متاح للتسجيل</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-primary" onclick="registerEvent(this)">تسجيل</button>
+                            </div>
+                        </div>
+
+                        <div class="event-card" data-category="social" data-title="زيارة دار الأيتام" data-location="دار الأيتام - الجيزة">
+                            <div class="event-image">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="event-info">
+                                <h4>زيارة دار الأيتام</h4>
+                                <div class="event-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>دار الأيتام - الجيزة</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>الأحد - 2:00 م</span>
+                                    </div>
+                                </div>
+                                <div class="event-status available">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <span>متاح للتسجيل</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-primary" onclick="registerEvent(this)">تسجيل</button>
+                            </div>
+                        </div>
+
+                        <div class="event-card" data-category="environmental" data-title="تنظيف الشاطئ" data-location="شاطئ الإسكندرية">
+                            <div class="event-image">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <div class="event-info">
+                                <h4>تنظيف الشاطئ</h4>
+                                <div class="event-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>شاطئ الإسكندرية</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>الثلاثاء - 7:00 ص</span>
+                                    </div>
+                                </div>
+                                <div class="event-status available">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <span>متاح للتسجيل</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-primary" onclick="registerEvent(this)">تسجيل</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                </div>
+
+                <!-- News Feed Page -->
+                <div class="page" id="news-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>الموجز والأخبار</h2>
+                    </div>
+
+                    <div class="news-container">
+                        <div class="news-card" onclick="openNewsDetails(1)">
+                            <div class="news-image">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <div class="news-content">
+                                <h4>فعالية تنظيف الشواطئ</h4>
+                                <p>انضم إلينا في حملة تنظيف شواطئ الإسكندرية هذا الأسبوع...</p>
+                                <div class="news-meta">
+                                    <span class="news-date">منذ ساعتين</span>
+                                    <span class="news-admin">إدارة التطوع</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="news-card" onclick="openNewsDetails(2)">
+                            <div class="news-image">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="news-content">
+                                <h4>دورة تدريبية جديدة</h4>
+                                <p>تم إطلاق دورة تدريبية في مهارات القيادة للمتطوعين...</p>
+                                <div class="news-meta">
+                                    <span class="news-date">أمس</span>
+                                    <span class="news-admin">قسم التدريب</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="news-card" onclick="openNewsDetails(3)">
+                            <div class="news-image">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="news-content">
+                                <h4>تكريم المتطوعين المميزين</h4>
+                                <p>تهانينا للمتطوعين الذين حصلوا على جائزة أفضل متطوع...</p>
+                                <div class="news-meta">
+                                    <span class="news-date">منذ 3 أيام</span>
+                                    <span class="news-admin">مجلس الإدارة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entertainment Page -->
+                <div class="page" id="entertainment-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>الترفيه</h2>
+                    </div>
+
+                    <div class="entertainment-container">
+                        <div class="activity-card">
+                            <div class="activity-icon">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <div class="activity-info">
+                                <h4>لعبة الألغاز اليومية</h4>
+                                <p>اكتشف الكلمة المخفية واحصل على نقاط</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                                <div class="progress-text">60% مكتمل - 30 نقطة</div>
+                            </div>
+                            <button class="btn-primary" onclick="playGame('puzzle')">العب الآن</button>
+                        </div>
+
+                        <div class="activity-card">
+                            <div class="activity-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div class="activity-info">
+                                <h4>اختبار المعلومات العامة</h4>
+                                <p>اختبر معلوماتك في مختلف المجالات</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                                <div class="progress-text">80% مكتمل - 40 نقطة</div>
+                            </div>
+                            <button class="btn-primary" onclick="playGame('quiz')">ابدأ الاختبار</button>
+                        </div>
+
+                        <div class="activity-card">
+                            <div class="activity-icon">
+                                <i class="fas fa-memory"></i>
+                            </div>
+                            <div class="activity-info">
+                                <h4>لعبة الذاكرة</h4>
+                                <p>اختبر قوة ذاكرتك مع البطاقات</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                                <div class="progress-text">25% مكتمل - 15 نقطة</div>
+                            </div>
+                            <button class="btn-primary" onclick="playGame('memory')">العب الآن</button>
+                        </div>
+
+                        <div class="daily-challenge">
+                            <h4>التحدي اليومي</h4>
+                            <div class="challenge-card">
+                                <i class="fas fa-star"></i>
+                                <div class="challenge-info">
+                                    <h5>شارك في 3 أنشطة اليوم</h5>
+                                    <div class="challenge-progress">2/3 مكتمل</div>
+                                </div>
+                                <div class="challenge-reward">+100 نقطة</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                </div>
+
+                <!-- Enhanced Certificates & Documents Hub -->
+                <div class="page" id="certificates-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>الشهادات والوثائق</h2>
+                        <div class="header-actions">
+                            <button class="btn-outline" onclick="requestNewDocument()">
+                                <i class="fas fa-plus"></i>
+                                طلب وثيقة
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="certificates-container">
+                        <!-- Digital Passport Section -->
+                        <div class="digital-passport-section">
+                            <div class="passport-card">
+                                <div class="passport-header">
+                                    <h4>جواز التطوع الرقمي</h4>
+                                    <div class="passport-qr">
+                                        <i class="fas fa-qrcode"></i>
+                                    </div>
+                                </div>
+                                <div class="passport-content">
+                                    <div class="passport-photo">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23007bff'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E" alt="صورة المتطوع">
+                                    </div>
+                                    <div class="passport-info">
+                                        <h5>أحمد محمد</h5>
+                                        <p>متطوع نشط • المستوى 3</p>
+                                        <div class="passport-stats">
+                                            <span><i class="fas fa-star"></i> 1,250 نقطة</span>
+                                            <span><i class="fas fa-clock"></i> 48 ساعة</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="passport-actions">
+                                    <button class="btn-primary" onclick="scanPassportQR()">
+                                        <i class="fas fa-camera"></i>
+                                        مسح QR
+                                    </button>
+                                    <button class="btn-secondary" onclick="sharePassport()">
+                                        <i class="fas fa-share"></i>
+                                        مشاركة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Document Categories -->
+                        <div class="document-categories">
+                            <div class="category-tabs">
+                                <button class="category-tab active" data-category="certificates" onclick="switchDocumentCategory('certificates')">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>الشهادات</span>
+                                </button>
+                                <button class="category-tab" data-category="recommendations" onclick="switchDocumentCategory('recommendations')">
+                                    <i class="fas fa-star"></i>
+                                    <span>التوصيات</span>
+                                </button>
+                                <button class="category-tab" data-category="official" onclick="switchDocumentCategory('official')">
+                                    <i class="fas fa-stamp"></i>
+                                    <span>الرسمية</span>
+                                </button>
+                                <button class="category-tab" data-category="temporary" onclick="switchDocumentCategory('temporary')">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>المؤقتة</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Certificates Section -->
+                        <div class="document-section active" id="certificates-section">
+                            <div class="section-header">
+                                <h4>شهادات التقدير والإنجاز</h4>
+                                <span class="document-count">3 شهادات</span>
+                            </div>
+                            
+                            <div class="certificate-card instant">
+                                <div class="certificate-badge">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>فوري</span>
+                                </div>
+                                <div class="certificate-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="certificate-info">
+                                    <h4>شهادة الإسعافات الأولية</h4>
+                                    <p>تم الحصول عليها بتاريخ: 15 يناير 2024</p>
+                                    <div class="certificate-details">
+                                        <span class="certificate-hours">20 ساعة تدريبية</span>
+                                        <span class="certificate-score">95%</span>
+                                    </div>
+                                    <div class="certificate-status">
+                                        <span class="status-badge available">
+                                            <i class="fas fa-check-circle"></i>
+                                            متاح للتحميل
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="certificate-actions">
+                                    <button class="btn-secondary" onclick="downloadCertificate('first-aid')">
+                                        <i class="fas fa-download"></i>
+                                        تحميل PDF
+                                    </button>
+                                    <button class="btn-primary" onclick="shareCertificate('first-aid')">
+                                        <i class="fas fa-share"></i>
+                                        مشاركة
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="certificate-card official">
+                                <div class="certificate-badge">
+                                    <i class="fas fa-stamp"></i>
+                                    <span>رسمي</span>
+                                </div>
+                                <div class="certificate-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div class="certificate-info">
+                                    <h4>شهادة المشاركة البيئية</h4>
+                                    <p>تم الحصول عليها بتاريخ: 10 يناير 2024</p>
+                                    <div class="certificate-details">
+                                        <span class="certificate-hours">15 ساعة عمل</span>
+                                        <span class="certificate-score">ممتاز</span>
+                                    </div>
+                                    <div class="certificate-status">
+                                        <span class="status-badge pending">
+                                            <i class="fas fa-clock"></i>
+                                            قيد المعالجة
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="certificate-actions">
+                                    <button class="btn-secondary" onclick="downloadCertificate('environment')">
+                                        <i class="fas fa-download"></i>
+                                        تحميل PDF
+                                    </button>
+                                    <button class="btn-primary" onclick="shareCertificate('environment')">
+                                        <i class="fas fa-share"></i>
+                                        مشاركة
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="certificate-card temporary">
+                                <div class="certificate-badge">
+                                    <i class="fas fa-clock"></i>
+                                    <span>مؤقت</span>
+                                </div>
+                                <div class="certificate-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="certificate-info">
+                                    <h4>شهادة العمل الجماعي</h4>
+                                    <p>تم الحصول عليها بتاريخ: 5 يناير 2024</p>
+                                    <div class="certificate-details">
+                                        <span class="certificate-hours">10 ساعات عمل</span>
+                                        <span class="certificate-score">جيد جداً</span>
+                                    </div>
+                                    <div class="certificate-status">
+                                        <span class="status-badge available">
+                                            <i class="fas fa-check-circle"></i>
+                                            متاح للتحميل
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="certificate-actions">
+                                    <button class="btn-secondary" onclick="downloadCertificate('teamwork')">
+                                        <i class="fas fa-download"></i>
+                                        تحميل PDF
+                                    </button>
+                                    <button class="btn-primary" onclick="shareCertificate('teamwork')">
+                                        <i class="fas fa-share"></i>
+                                        مشاركة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recommendations Section -->
+                        <div class="document-section" id="recommendations-section">
+                            <div class="section-header">
+                                <h4>خطابات التوصية</h4>
+                                <span class="document-count">2 خطابات</span>
+                            </div>
+                            
+                            <div class="recommendation-card">
+                                <div class="recommendation-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="recommendation-info">
+                                    <h4>خطاب توصية - جامعة القاهرة</h4>
+                                    <p>طلب بتاريخ: 20 يناير 2024</p>
+                                    <div class="recommendation-details">
+                                        <span class="recommendation-purpose">للتقديم على منحة دراسية</span>
+                                        <span class="recommendation-status approved">تمت الموافقة</span>
+                                    </div>
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn-secondary" onclick="downloadRecommendation('cairo-uni')">
+                                        <i class="fas fa-download"></i>
+                                        تحميل
+                                    </button>
+                                    <button class="btn-primary" onclick="shareRecommendation('cairo-uni')">
+                                        <i class="fas fa-share"></i>
+                                        مشاركة
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="recommendation-card">
+                                <div class="recommendation-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="recommendation-info">
+                                    <h4>خطاب توصية - شركة ABC</h4>
+                                    <p>طلب بتاريخ: 18 يناير 2024</p>
+                                    <div class="recommendation-details">
+                                        <span class="recommendation-purpose">للتقديم على وظيفة</span>
+                                        <span class="recommendation-status pending">قيد المعالجة</span>
+                                    </div>
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn-secondary" onclick="trackRecommendation('abc-company')">
+                                        <i class="fas fa-eye"></i>
+                                        متابعة
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Request New Document -->
+                        <div class="request-document-section">
+                            <h4>طلب وثيقة جديدة</h4>
+                            <div class="request-options">
+                                <div class="request-option" onclick="requestDocument('certificate')">
+                                    <div class="option-icon">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div class="option-info">
+                                        <h5>شهادة مشاركة</h5>
+                                        <p>شهادة رسمية لمشاركتك في الفعاليات</p>
+                                    </div>
+                                    <i class="fas fa-chevron-left"></i>
+                                </div>
+                                
+                                <div class="request-option" onclick="requestDocument('recommendation')">
+                                    <div class="option-icon">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="option-info">
+                                        <h5>خطاب توصية</h5>
+                                        <p>خطاب توصية رسمي للجامعات أو الشركات</p>
+                                    </div>
+                                    <i class="fas fa-chevron-left"></i>
+                                </div>
+                                
+                                <div class="request-option" onclick="requestDocument('experience')">
+                                    <div class="option-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div class="option-info">
+                                        <h5>شهادة خبرة</h5>
+                                        <p>شهادة تفصيلية بخبرتك التطوعية</p>
+                                    </div>
+                                    <i class="fas fa-chevron-left"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                </div>
+
+                <!-- LMS Page -->
+                <div class="page" id="lms-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>التعليم</h2>
+                    </div>
+
+                    <div class="lms-container">
+                        <div class="course-card">
+                            <div class="course-image">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="course-info">
+                                <h4>أساسيات الإسعافات الأولية</h4>
+                                <p>تعلم المهارات الأساسية لإنقاذ الأرواح</p>
+                                <div class="course-meta">
+                                    <span class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        4 ساعات
+                                    </span>
+                                    <span class="course-level">مبتدئ</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <div class="progress-text">75% مكتمل (3 من 4 دروس)</div>
+                            </div>
+                            <button class="btn-primary" onclick="continueCourse('first-aid')">متابعة</button>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course-image">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="course-info">
+                                <h4>الحفاظ على البيئة</h4>
+                                <p>تعرف على طرق حماية البيئة والاستدامة</p>
+                                <div class="course-meta">
+                                    <span class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        3 ساعات
+                                    </span>
+                                    <span class="course-level">متوسط</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="progress-text">لم يبدأ بعد</div>
+                            </div>
+                            <button class="btn-primary" onclick="startCourse('environment')">ابدأ الآن</button>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course-image">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="course-info">
+                                <h4>مهارات القيادة</h4>
+                                <p>طور مهاراتك القيادية في العمل التطوعي</p>
+                                <div class="course-meta">
+                                    <span class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        5 ساعات
+                                    </span>
+                                    <span class="course-level">متقدم</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                                <div class="progress-text">مكتمل - تم الحصول على الشهادة</div>
+                            </div>
+                            <button class="btn-secondary" onclick="viewCertificate('leadership')">عرض الشهادة</button>
+                        </div>
+
+                        <div class="recommended-courses">
+                            <h4>كورسات مقترحة لك</h4>
+                            <div class="recommendation-card">
+                                <i class="fas fa-lightbulb"></i>
+                                <div class="recommendation-info">
+                                    <h5>التواصل الفعال</h5>
+                                    <p>بناءً على نشاطك في الفعاليات الاجتماعية</p>
+                                </div>
+                                <button class="btn-outline">استكشف</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                </div>
+
+                <!-- Enhanced Settings Page -->
+                <div class="page" id="settings-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>الإعدادات</h2>
+                        <div class="header-actions">
+                            <button class="home-nav-btn" onclick="navigateTo('home-page')" title="العودة للرئيسية">
+                                <i class="fas fa-home"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-container">
+                        <!-- Profile Section -->
+                        <div class="settings-section">
+                            <h4>الملف الشخصي</h4>
+                            <div class="setting-item" onclick="editProfile()">
+                                <div class="setting-info">
+                                    <i class="fas fa-user"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">تعديل البيانات الشخصية</span>
+                                        <span class="setting-subtitle">الاسم، الهاتف، البريد الإلكتروني</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="setting-item" onclick="changePassword()">
+                                <div class="setting-info">
+                                    <i class="fas fa-lock"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">تغيير كلمة السر</span>
+                                        <span class="setting-subtitle">تحديث كلمة المرور</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="setting-item" onclick="editPhoto()">
+                                <div class="setting-info">
+                                    <i class="fas fa-camera"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">تغيير الصورة الشخصية</span>
+                                        <span class="setting-subtitle">رفع صورة جديدة</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                        </div>
+
+                        <!-- Membership Section -->
+                        <div class="settings-section">
+                            <h4>العضوية والبيانات</h4>
+                            <div class="setting-item" onclick="editMembership()">
+                                <div class="setting-info">
+                                    <i class="fas fa-id-card"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">نوع العضوية</span>
+                                        <span class="setting-subtitle">متطوع نشط</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="setting-item" onclick="editLocation()">
+                                <div class="setting-info">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">المحافظة</span>
+                                        <span class="setting-subtitle">القاهرة</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="setting-item" onclick="editGroup()">
+                                <div class="setting-info">
+                                    <i class="fas fa-users"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">المجموعة</span>
+                                        <span class="setting-subtitle">المجموعة الأولى</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <i class="fas fa-calendar"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">تاريخ الانضمام</span>
+                                        <span class="setting-subtitle">يناير 2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preferences Section -->
+                        <div class="settings-section">
+                            <h4>التفضيلات</h4>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <i class="fas fa-bell"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">إشعارات الفعاليات</span>
+                                        <span class="setting-subtitle">تنبيهات الفعاليات القادمة</span>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">إشعارات البريد الإلكتروني</span>
+                                        <span class="setting-subtitle">رسائل البريد الإلكتروني</span>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <i class="fas fa-trophy"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">إشعارات الإنجازات</span>
+                                        <span class="setting-subtitle">تنبيهات النقاط والشارات</span>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <i class="fas fa-palette"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">المظهر</span>
+                                        <span class="setting-subtitle">الوضع الفاتح أو الداكن</span>
+                                    </div>
+                                </div>
+                                <div class="theme-options">
+                                    <button class="theme-btn" onclick="applyTheme('light')" title="فاتح">
+                                        <i class="fas fa-sun"></i>
+                                    </button>
+                                    <button class="theme-btn" onclick="applyTheme('dark')" title="داكن">
+                                        <i class="fas fa-moon"></i>
+                                    </button>
+                                    <button class="theme-btn" onclick="setThemeAuto()" title="تلقائي">
+                                        <i class="fas fa-magic"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Privacy & Security -->
+                        <div class="settings-section">
+                            <h4>الخصوصية والأمان</h4>
+                            <div class="setting-item" onclick="privacySettings()">
+                                <div class="setting-info">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">إعدادات الخصوصية</span>
+                                        <span class="setting-subtitle">التحكم في البيانات الشخصية</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="setting-item" onclick="twoFactorAuth()">
+                                <div class="setting-info">
+                                    <i class="fas fa-key"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">المصادقة الثنائية</span>
+                                        <span class="setting-subtitle">حماية إضافية للحساب</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                        </div>
+
+                        <!-- Help & Support -->
+                        <div class="settings-section">
+                            <h4>المساعدة والدعم</h4>
+                            <div class="setting-item" onclick="showFAQ()">
+                                <div class="setting-info">
+                                    <i class="fas fa-question-circle"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">الأسئلة الشائعة</span>
+                                        <span class="setting-subtitle">إجابات على الأسئلة المهمة</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="setting-item" onclick="contactSupport()">
+                                <div class="setting-info">
+                                    <i class="fas fa-headset"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">الدعم الفني</span>
+                                        <span class="setting-subtitle">تواصل مع فريق الدعم</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="setting-item" onclick="aboutApp()">
+                                <div class="setting-info">
+                                    <i class="fas fa-info-circle"></i>
+                                    <div class="setting-details">
+                                        <span class="setting-title">حول التطبيق</span>
+                                        <span class="setting-subtitle">إصدار 1.0.0</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- Bottom Navigation -->
+
+                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                    <div class="bottom-nav">
+                        <div class="nav-item active" onclick="navigateTo('home-page')">
+                            <i class="fas fa-home"></i>
+                            <span>الرئيسية</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('events-page')">
+                            <i class="fas fa-calendar"></i>
+                            <span>الأحداث</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('rewards-page')">
+                            <i class="fas fa-gift"></i>
+                            <span>المكافآت</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('communities-page')">
+                            <i class="fas fa-users"></i>
+                            <span>المجتمع</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('settings-page')">
+                            <i class="fas fa-cog"></i>
+                            <span>الإعدادات</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rewards & Marketplace Page -->
+                <div class="page" id="rewards-page">
+                    <!-- Enhanced Header with Points Balance Badge -->
+                    <div class="page-header rewards-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <div class="header-content">
+                            <div class="header-title">
+                                <h2>🎁 المكافآت والمتجر</h2>
+                            </div>
+                            <div class="points-balance-badge">
+                                <i class="fas fa-star"></i>
+                                <span>⭐ 1,250 نقطة</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rewards-container">
+                        <!-- Enhanced Hero Section with Rotating Carousel -->
+                        <div class="hero-rewards-section">
+                            <div class="reward-carousel">
+                                <div class="hero-reward-card active" data-slide="0">
+                                    <div class="hero-reward-image">
+                                        <i class="fas fa-film"></i>
+                                    </div>
+                                    <div class="hero-reward-content">
+                                        <h3>تذكرة سينما مجانية</h3>
+                                        <p>استمتع بأحدث الأفلام في أفضل دور السينما</p>
+                                        <div class="hero-reward-cost">
+                                            <span class="points-required">500 نقطة</span>
+                                        </div>
+                                        <button class="btn-primary hero-redeem-btn" onclick="redeemReward('cinema', 500)">
+                                            <i class="fas fa-gift"></i>
+                                            استبدال
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="hero-reward-card" data-slide="1">
+                                    <div class="hero-reward-image">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </div>
+                                    <div class="hero-reward-content">
+                                        <h3>خصم 20% من متجر XYZ</h3>
+                                        <p>تسوق بخصم حصري على جميع المنتجات</p>
+                                        <div class="hero-reward-cost">
+                                            <span class="points-required">300 نقطة</span>
+                                        </div>
+                                        <button class="btn-primary hero-redeem-btn" onclick="redeemReward('shopping', 300)">
+                                            <i class="fas fa-gift"></i>
+                                            استبدال
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="hero-reward-card" data-slide="2">
+                                    <div class="hero-reward-image">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="hero-reward-content">
+                                        <h3>شارة الإنجاز الذهبية</h3>
+                                        <p>شارة حصرية للمتطوعين المميزين</p>
+                                        <div class="hero-reward-cost">
+                                            <span class="points-required">1000 نقطة</span>
+                                        </div>
+                                        <button class="btn-primary hero-redeem-btn" onclick="redeemReward('badge', 1000)">
+                                            <i class="fas fa-gift"></i>
+                                            استبدال
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-indicators">
+                                <div class="indicator active" onclick="goToSlide(0)"></div>
+                                <div class="indicator" onclick="goToSlide(1)"></div>
+                                <div class="indicator" onclick="goToSlide(2)"></div>
+                            </div>
+                            
+                            <div class="carousel-controls">
+                                <button class="carousel-btn prev" onclick="previousSlide()">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                                <button class="carousel-btn next" onclick="nextSlide()">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Enhanced Categories Filter -->
+                        <div class="reward-categories-section">
+                            <div class="categories-scroll">
+                                <button class="category-chip active" data-category="all">
+                                    <span class="category-icon">🎁</span>
+                                    <span class="category-name">الكل</span>
+                                </button>
+                                <button class="category-chip" data-category="entertainment">
+                                    <span class="category-icon">🎟️</span>
+                                    <span class="category-name">ترفيه</span>
+                                </button>
+                                <button class="category-chip" data-category="shopping">
+                                    <span class="category-icon">🛍️</span>
+                                    <span class="category-name">تسوق</span>
+                                </button>
+                                <button class="category-chip" data-category="education">
+                                    <span class="category-icon">🎓</span>
+                                    <span class="category-name">تعليم</span>
+                                </button>
+                                <button class="category-chip" data-category="volunteer">
+                                    <span class="category-icon">🧑‍🤝‍🧑</span>
+                                    <span class="category-name">تطوع</span>
+                                </button>
+                                <button class="category-chip" data-category="exclusive">
+                                    <span class="category-icon">⭐</span>
+                                    <span class="category-name">حصري</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Enhanced Rewards Grid -->
+                        <div class="rewards-grid-section">
+                            <h4 class="section-title">المكافآت المتاحة</h4>
+                            <div class="rewards-grid">
+                                <div class="reward-card" data-category="entertainment">
+                                    <div class="reward-image">
+                                        <i class="fas fa-music"></i>
+                                    </div>
+                                    <div class="reward-details">
+                                        <h5>تذكرة حفل موسيقي</h5>
+                                        <p>حفلة موسيقية حية مع أفضل الفنانين</p>
+                                        <div class="reward-cost">
+                                            <span class="points">800 نقطة</span>
+                                        </div>
+                                        <div class="availability available">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>متاح</span>
+                                        </div>
+                                    </div>
+                                    <button class="reward-btn" onclick="redeemReward('concert', 800)">
+                                        <i class="fas fa-gift"></i>
+                                        استبدال
+                                    </button>
+                                </div>
+
+                                <div class="reward-card" data-category="shopping">
+                                    <div class="reward-image">
+                                        <i class="fas fa-tshirt"></i>
+                                    </div>
+                                    <div class="reward-details">
+                                        <h5>قميص تطوعي مخصص</h5>
+                                        <p>قميص بتصميم خاص للمتطوعين</p>
+                                        <div class="reward-cost">
+                                            <span class="points">400 نقطة</span>
+                                        </div>
+                                        <div class="availability available">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>متاح</span>
+                                        </div>
+                                    </div>
+                                    <button class="reward-btn" onclick="redeemReward('tshirt', 400)">
+                                        <i class="fas fa-gift"></i>
+                                        استبدال
+                                    </button>
+                                </div>
+
+                                <div class="reward-card" data-category="education">
+                                    <div class="reward-image">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <div class="reward-details">
+                                        <h5>كورس تطوير الذات</h5>
+                                        <p>كورس مجاني أونلاين لتطوير مهاراتك</p>
+                                        <div class="reward-cost">
+                                            <span class="points">600 نقطة</span>
+                                        </div>
+                                        <div class="availability available">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>متاح</span>
+                                        </div>
+                                    </div>
+                                    <button class="reward-btn" onclick="redeemReward('course', 600)">
+                                        <i class="fas fa-gift"></i>
+                                        استبدال
+                                    </button>
+                                </div>
+
+                                <div class="reward-card" data-category="volunteer">
+                                    <div class="reward-image">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div class="reward-details">
+                                        <h5>شهادة تقدير مطبوعة</h5>
+                                        <p>شهادة رسمية مختومة ومطبوعة</p>
+                                        <div class="reward-cost">
+                                            <span class="points">200 نقطة</span>
+                                        </div>
+                                        <div class="availability available">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>متاح</span>
+                                        </div>
+                                    </div>
+                                    <button class="reward-btn" onclick="redeemReward('certificate', 200)">
+                                        <i class="fas fa-gift"></i>
+                                        استبدال
+                                    </button>
+                                </div>
+
+                                <div class="reward-card" data-category="exclusive">
+                                    <div class="reward-image exclusive">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <div class="reward-details">
+                                        <h5>لقاء مع مجلس الإدارة</h5>
+                                        <p>جلسة حصرية مع قيادة المنظمة</p>
+                                        <div class="reward-cost">
+                                            <span class="points">2000 نقطة</span>
+                                        </div>
+                                        <div class="availability limited">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            <span>محدود</span>
+                                        </div>
+                                    </div>
+                                    <button class="reward-btn exclusive" onclick="redeemReward('meeting', 2000)">
+                                        <i class="fas fa-gift"></i>
+                                        استبدال
+                                    </button>
+                                </div>
+
+                                <div class="reward-card" data-category="shopping">
+                                    <div class="reward-image">
+                                        <i class="fas fa-coffee"></i>
+                                    </div>
+                                    <div class="reward-details">
+                                        <h5>قهوة مجانية</h5>
+                                        <p>قهوة مجانية من مقهى الشريك</p>
+                                        <div class="reward-cost">
+                                            <span class="points">100 نقطة</span>
+                                        </div>
+                                        <div class="progress-section">
+                                            <div class="progress-bar small">
+                                                <div class="progress-fill" style="width: 85%"></div>
+                                            </div>
+                                            <span class="progress-text">15 نقطة للاستبدال</span>
+                                        </div>
+                                    </div>
+                                    <button class="reward-btn disabled" disabled>
+                                        <i class="fas fa-clock"></i>
+                                        قريباً
+                                    </button>
+                                </div>
+
+                                <div class="reward-card" data-category="entertainment">
+                                    <div class="reward-image">
+                                        <i class="fas fa-gamepad"></i>
+                                    </div>
+                                    <div class="reward-details">
+                                        <h5>بطاقة ألعاب</h5>
+                                        <p>بطاقة هدايا لمتجر الألعاب</p>
+                                        <div class="reward-cost">
+                                            <span class="points">350 نقطة</span>
+                                        </div>
+                                        <div class="availability out-of-stock">
+                                            <i class="fas fa-times-circle"></i>
+                                            <span>نفذت الكمية</span>
+                                        </div>
+                                    </div>
+                                    <button class="reward-btn disabled" disabled>
+                                        <i class="fas fa-ban"></i>
+                                        نفذت
+                                    </button>
+                                </div>
+
+                                <div class="reward-card" data-category="education">
+                                    <div class="reward-image">
+                                        <i class="fas fa-laptop"></i>
+                                    </div>
+                                    <div class="reward-details">
+                                        <h5>ورشة تقنية</h5>
+                                        <p>ورشة في البرمجة والتقنية</p>
+                                        <div class="reward-cost">
+                                            <span class="points">750 نقطة</span>
+                                        </div>
+                                        <div class="availability available">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>متاح</span>
+                                        </div>
+                                    </div>
+                                    <button class="reward-btn" onclick="redeemReward('workshop', 750)">
+                                        <i class="fas fa-gift"></i>
+                                        استبدال
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Enhanced Milestone Section -->
+                        <div class="milestone-section">
+                            <h4 class="section-title">مستويات المكافآت</h4>
+                            <div class="milestone-timeline">
+                                <div class="milestone-tier completed">
+                                    <div class="tier-icon bronze">
+                                        <i class="fas fa-award"></i>
+                                    </div>
+                                    <div class="tier-info">
+                                        <h6>البرونزي</h6>
+                                        <span class="tier-points">100 نقطة</span>
+                                    </div>
+                                    <div class="tier-rewards">
+                                        <span class="mini-reward">قهوة مجانية</span>
+                                        <span class="mini-reward">خصم 10%</span>
+                                    </div>
+                                    <div class="tier-status completed">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>مكتمل</span>
+                                    </div>
+                                </div>
+
+                                <div class="milestone-tier completed">
+                                    <div class="tier-icon silver">
+                                        <i class="fas fa-medal"></i>
+                                    </div>
+                                    <div class="tier-info">
+                                        <h6>الفضي</h6>
+                                        <span class="tier-points">500 نقطة</span>
+                                    </div>
+                                    <div class="tier-rewards">
+                                        <span class="mini-reward">خصومات 20%</span>
+                                        <span class="mini-reward">تذاكر مجانية</span>
+                                    </div>
+                                    <div class="tier-status completed">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>مكتمل</span>
+                                    </div>
+                                </div>
+
+                                <div class="milestone-tier current">
+                                    <div class="tier-icon gold glowing">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="tier-info">
+                                        <h6>الذهبي</h6>
+                                        <span class="tier-points">1000 نقطة</span>
+                                    </div>
+                                    <div class="tier-rewards">
+                                        <span class="mini-reward">تذاكر مجانية</span>
+                                        <span class="mini-reward">مكافآت حصرية</span>
+                                    </div>
+                                    <div class="tier-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 75%"></div>
+                                        </div>
+                                        <span class="progress-label">250 نقطة للوصول</span>
+                                    </div>
+                                </div>
+
+                                <div class="milestone-tier upcoming">
+                                    <div class="tier-icon platinum">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <div class="tier-info">
+                                        <h6>البلاتيني</h6>
+                                        <span class="tier-points">2000 نقطة</span>
+                                    </div>
+                                    <div class="tier-rewards">
+                                        <span class="mini-reward">مكافآت حصرية</span>
+                                        <span class="mini-reward">لقاءات خاصة</span>
+                                    </div>
+                                    <div class="tier-status locked">
+                                        <i class="fas fa-lock"></i>
+                                        <span>مغلق</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Redemptions -->
+                        <div class="recent-redemptions-section">
+                            <h4 class="section-title">آخر الاستبدالات</h4>
+                            <div class="redemption-history">
+                                <div class="redemption-item">
+                                    <div class="redemption-icon">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div class="redemption-info">
+                                        <h6>شهادة تقدير</h6>
+                                        <span>منذ 3 أيام - 200 نقطة</span>
+                                    </div>
+                                    <div class="redemption-status completed">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+
+                                <div class="redemption-item">
+                                    <div class="redemption-icon">
+                                        <i class="fas fa-coffee"></i>
+                                    </div>
+                                    <div class="redemption-info">
+                                        <h6>قهوة مجانية</h6>
+                                        <span>الأسبوع الماضي - 100 نقطة</span>
+                                    </div>
+                                    <div class="redemption-status completed">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Bottom Navigation -->
+                    <div class="bottom-nav">
+                        <div class="nav-item" onclick="navigateTo('home-page')">
+                            <i class="fas fa-home"></i>
+                            <span>الرئيسية</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('events-page')">
+                            <i class="fas fa-calendar"></i>
+                            <span>الأحداث</span>
+                        </div>
+                        <div class="nav-item active" onclick="navigateTo('rewards-page')">
+                            <i class="fas fa-gift"></i>
+                            <span>المكافآت</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('certificates-page')">
+                            <i class="fas fa-certificate"></i>
+                            <span>الشهادات</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('communities-page')">
+                            <i class="fas fa-users"></i>
+                            <span>المجتمع</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Volunteers Page -->
+                <div class="page" id="top-volunteers-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>المتطوعون المتميزون</h2>
+                    </div>
+
+                    <div class="top-volunteers-container">
+                        <div class="leaderboard-tabs">
+                            <button class="tab-btn active" onclick="switchLeaderboard('daily')">يومي</button>
+                            <button class="tab-btn" onclick="switchLeaderboard('weekly')">أسبوعي</button>
+                            <button class="tab-btn" onclick="switchLeaderboard('monthly')">شهري</button>
+                            <button class="tab-btn" onclick="switchLeaderboard('alltime')">كل الأوقات</button>
+                        </div>
+
+                        <div class="podium-section">
+                            <div class="podium">
+                                <div class="podium-place second">
+                                    <div class="volunteer-avatar">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23ff6b35'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E" alt="المركز الثاني">
+                                        <div class="rank-badge silver">2</div>
+                                    </div>
+                                    <h4>سارة أحمد</h4>
+                                    <p>850 نقطة</p>
+                                </div>
+                                
+                                <div class="podium-place first">
+                                    <div class="volunteer-avatar">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2328a745'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EM%3C/text%3E%3C/svg%3E" alt="المركز الأول">
+                                        <div class="rank-badge gold">1</div>
+                                        <i class="fas fa-crown crown-icon"></i>
+                                    </div>
+                                    <h4>محمد علي</h4>
+                                    <p>1,200 نقطة</p>
+                                </div>
+                                
+                                <div class="podium-place third">
+                                    <div class="volunteer-avatar">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23007bff'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EK%3C/text%3E%3C/svg%3E" alt="المركز الثالث">
+                                        <div class="rank-badge bronze">3</div>
+                                    </div>
+                                    <h4>خالد محمود</h4>
+                                    <p>720 نقطة</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="leaderboard-list">
+                            <div class="volunteer-rank-item">
+                                <div class="rank-number">4</div>
+                                <div class="volunteer-info">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23ffc107'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EF%3C/text%3E%3C/svg%3E" alt="فاطمة">
+                                    <div class="volunteer-details">
+                                        <h5>فاطمة حسن</h5>
+                                        <span>680 نقطة</span>
+                                    </div>
+                                </div>
+                                <div class="volunteer-badges">
+                                    <i class="fas fa-medal" title="متطوع مميز"></i>
+                                    <i class="fas fa-heart" title="قلب كبير"></i>
+                                </div>
+                            </div>
+
+                            <div class="volunteer-rank-item">
+                                <div class="rank-number">5</div>
+                                <div class="volunteer-info">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%236f42c1'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EO%3C/text%3E%3C/svg%3E" alt="عمر">
+                                    <div class="volunteer-details">
+                                        <h5>عمر سالم</h5>
+                                        <span>650 نقطة</span>
+                                    </div>
+                                </div>
+                                <div class="volunteer-badges">
+                                    <i class="fas fa-clock" title="دائم الحضور"></i>
+                                </div>
+                            </div>
+
+                            <div class="volunteer-rank-item current-user">
+                                <div class="rank-number">15</div>
+                                <div class="volunteer-info">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23007bff'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E" alt="أحمد">
+                                    <div class="volunteer-details">
+                                        <h5>أحمد محمد (أنت)</h5>
+                                        <span>420 نقطة</span>
+                                    </div>
+                                </div>
+                                <div class="volunteer-badges">
+                                    <i class="fas fa-star" title="نجم صاعد"></i>
+                                </div>
+                            </div>
+
+                            <div class="more-volunteers">
+                                <button class="btn-outline" onclick="loadMoreVolunteers()">
+                                    <i class="fas fa-chevron-down"></i>
+                                    عرض المزيد
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="achievements-showcase">
+                            <h4>إنجازات هذا الشهر</h4>
+                            <div class="achievement-cards">
+                                <div class="achievement-card">
+                                    <i class="fas fa-calendar-check"></i>
+                                    <div class="achievement-info">
+                                        <h5>أكثر المشاركين</h5>
+                                        <p>محمد علي - 12 فعالية</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="achievement-card">
+                                    <i class="fas fa-clock"></i>
+                                    <div class="achievement-info">
+                                        <h5>أكثر الساعات</h5>
+                                        <p>سارة أحمد - 45 ساعة</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="achievement-card">
+                                    <i class="fas fa-users"></i>
+                                    <div class="achievement-info">
+                                        <h5>أفضل قائد فريق</h5>
+                                        <p>خالد محمود - 8 فرق</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                    
+                </div>
+
+                <!-- Explore Opportunities Page -->
+                <div class="page" id="explore-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>استكشف الفرص</h2>
+                        <div class="header-actions">
+                            <button class="btn-outline" onclick="showFilters()">
+                                <i class="fas fa-filter"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="explore-container">
+                        <!-- Search and Filters -->
+                        <div class="search-section">
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="ابحث عن فرص تطوعية..." id="explore-search">
+                            </div>
+                            
+                            <div class="quick-filters">
+                                <button class="filter-chip active" data-filter="all">الكل</button>
+                                <button class="filter-chip" data-filter="nearby">قريب مني</button>
+                                <button class="filter-chip" data-filter="urgent">عاجل</button>
+                                <button class="filter-chip" data-filter="virtual">افتراضي</button>
+                                <button class="filter-chip" data-filter="weekend">عطلة نهاية الأسبوع</button>
+                            </div>
+                        </div>
+
+                        <!-- Personalized Recommendations -->
+                        <div class="recommendations-section">
+                            <h4>مقترح لك</h4>
+                            <div class="recommendation-cards">
+                                <div class="recommendation-card featured">
+                                    <div class="card-badge">مقترح لك</div>
+                                    <div class="card-image">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h5>زيارة دار الأيتام</h5>
+                                        <p>بناءً على اهتمامك بالعمل الاجتماعي</p>
+                                        <div class="card-meta">
+                                            <span class="location">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                الجيزة
+                                            </span>
+                                            <span class="time">
+                                                <i class="fas fa-clock"></i>
+                                                غداً
+                                            </span>
+                                        </div>
+                                        <div class="match-percentage">
+                                            <div class="match-bar">
+                                                <div class="match-fill" style="width: 95%"></div>
+                                            </div>
+                                            <span>95% تطابق</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary" onclick="applyOpportunity('orphanage')">تطبيق</button>
+                                </div>
+
+                                <div class="recommendation-card">
+                                    <div class="card-image">
+                                        <i class="fas fa-seedling"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h5>حملة زراعة الأشجار</h5>
+                                        <p>بناءً على مشاركتك في الفعاليات البيئية</p>
+                                        <div class="card-meta">
+                                            <span class="location">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                القاهرة
+                                            </span>
+                                            <span class="time">
+                                                <i class="fas fa-clock"></i>
+                                                الجمعة
+                                            </span>
+                                        </div>
+                                        <div class="match-percentage">
+                                            <div class="match-bar">
+                                                <div class="match-fill" style="width: 87%"></div>
+                                            </div>
+                                            <span>87% تطابق</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary" onclick="applyOpportunity('trees')">تطبيق</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trending Opportunities -->
+                        <div class="trending-section">
+                            <h4>الفرص الرائجة</h4>
+                            <div class="trending-cards">
+                                <div class="trending-card">
+                                    <div class="trending-badge">
+                                        <i class="fas fa-fire"></i>
+                                        <span>رائج</span>
+                                    </div>
+                                    <div class="card-image">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h5>تدريس الأطفال</h5>
+                                        <p>مساعدة الأطفال في المواد الدراسية</p>
+                                        <div class="card-stats">
+                                            <span class="applicants">
+                                                <i class="fas fa-users"></i>
+                                                45 متقدم
+                                            </span>
+                                            <span class="deadline">
+                                                <i class="fas fa-calendar"></i>
+                                                خلال يومين
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary" onclick="applyOpportunity('teaching')">تطبيق</button>
+                                </div>
+
+                                <div class="trending-card">
+                                    <div class="trending-badge">
+                                        <i class="fas fa-star"></i>
+                                        <span>مميز</span>
+                                    </div>
+                                    <div class="card-image">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h5>توزيع وجبات</h5>
+                                        <p>توزيع وجبات على المحتاجين</p>
+                                        <div class="card-stats">
+                                            <span class="applicants">
+                                                <i class="fas fa-users"></i>
+                                                32 متقدم
+                                            </span>
+                                            <span class="deadline">
+                                                <i class="fas fa-calendar"></i>
+                                                اليوم
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-primary" onclick="applyOpportunity('meals')">تطبيق</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Micro-Volunteer Missions -->
+                        <div class="micro-missions-section">
+                            <h4>مهام سريعة (20-60 دقيقة)</h4>
+                            <div class="micro-missions-grid">
+                                <div class="micro-mission-card">
+                                    <div class="mission-icon">
+                                        <i class="fas fa-share-alt"></i>
+                                    </div>
+                                    <div class="mission-content">
+                                        <h6>مشاركة منشور</h6>
+                                        <p>شارك منشور الفعالية على وسائل التواصل</p>
+                                        <div class="mission-reward">
+                                            <span class="points">+10 نقاط</span>
+                                            <span class="time">5 دقائق</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-outline" onclick="startMicroMission('share')">ابدأ</button>
+                                </div>
+
+                                <div class="micro-mission-card">
+                                    <div class="mission-icon">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                    <div class="mission-content">
+                                        <h6>التقاط صورة</h6>
+                                        <p>التقط صورة للفعالية مع وصف</p>
+                                        <div class="mission-reward">
+                                            <span class="points">+15 نقاط</span>
+                                            <span class="time">10 دقائق</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-outline" onclick="startMicroMission('photo')">ابدأ</button>
+                                </div>
+
+                                <div class="micro-mission-card">
+                                    <div class="mission-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="mission-content">
+                                        <h6>اتصال تذكير</h6>
+                                        <p>اتصل بـ 3 متطوعين لتذكيرهم بالفعالية</p>
+                                        <div class="mission-reward">
+                                            <span class="points">+25 نقاط</span>
+                                            <span class="time">20 دقيقة</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-outline" onclick="startMicroMission('call')">ابدأ</button>
+                                </div>
+
+                                <div class="micro-mission-card">
+                                    <div class="mission-icon">
+                                        <i class="fas fa-edit"></i>
+                                    </div>
+                                    <div class="mission-content">
+                                        <h6>كتابة تقرير</h6>
+                                        <p>اكتب تقريراً قصيراً عن الفعالية</p>
+                                        <div class="mission-reward">
+                                            <span class="points">+30 نقاط</span>
+                                            <span class="time">30 دقيقة</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-outline" onclick="startMicroMission('report')">ابدأ</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Volunteer Matchmaking -->
+                        <div class="matchmaking-section">
+                            <h4>تطابق مع الفعاليات</h4>
+                            <div class="matchmaking-cards">
+                                <div class="match-card">
+                                    <div class="match-header">
+                                        <h5>بناءً على مهاراتك</h5>
+                                        <div class="match-score">92%</div>
+                                    </div>
+                                    <div class="skills-match">
+                                        <div class="skill-item">
+                                            <span class="skill-name">التواصل</span>
+                                            <div class="skill-bar">
+                                                <div class="skill-fill" style="width: 95%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">القيادة</span>
+                                            <div class="skill-bar">
+                                                <div class="skill-fill" style="width: 88%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">التنظيم</span>
+                                            <div class="skill-bar">
+                                                <div class="skill-fill" style="width: 85%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="suggested-roles">
+                                        <h6>الأدوار المقترحة:</h6>
+                                        <div class="role-tags">
+                                            <span class="role-tag">قائد فريق</span>
+                                            <span class="role-tag">منسق فعالية</span>
+                                            <span class="role-tag">مدرب</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                </div>
+
+                <!-- Communities & Groups Page -->
+                <div class="page" id="communities-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>المجتمعات والمجموعات</h2>
+                        <div class="header-actions">
+                            <button class="btn-outline" onclick="createGroup()">
+                                <i class="fas fa-plus"></i>
+                                إنشاء مجموعة
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="communities-container">
+                        <!-- My Groups -->
+                        <div class="my-groups-section">
+                            <h4>مجموعاتي</h4>
+                            <div class="my-groups">
+                                <div class="group-card active-group">
+                                    <div class="group-avatar">
+                                        <i class="fas fa-leaf"></i>
+                                    </div>
+                                    <div class="group-info">
+                                        <h5>مجموعة حماية البيئة</h5>
+                                        <p>45 عضو • 3 رسائل جديدة</p>
+                                        <div class="group-stats">
+                                            <span class="active-members">
+                                                <i class="fas fa-circle"></i>
+                                                12 متصل الآن
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="group-actions">
+                                        <button class="btn-primary" onclick="openGroupChat('environment')">
+                                            <i class="fas fa-comments"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="group-card">
+                                    <div class="group-avatar">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div class="group-info">
+                                        <h5>مجموعة العمل الاجتماعي</h5>
+                                        <p>32 عضو • 1 رسالة جديدة</p>
+                                        <div class="group-stats">
+                                            <span class="active-members">
+                                                <i class="fas fa-circle"></i>
+                                                8 متصل الآن
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="group-actions">
+                                        <button class="btn-primary" onclick="openGroupChat('social')">
+                                            <i class="fas fa-comments"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Governorate Groups -->
+                        <div class="governorate-groups-section">
+                            <h4>مجموعات المحافظات</h4>
+                            <div class="governorate-tabs">
+                                <button class="gov-tab active" data-governorate="cairo">القاهرة</button>
+                                <button class="gov-tab" data-governorate="alexandria">الإسكندرية</button>
+                                <button class="gov-tab" data-governorate="giza">الجيزة</button>
+                                <button class="gov-tab" data-governorate="sharqia">الشرقية</button>
+                            </div>
+                            
+                            <div class="governorate-groups">
+                                <div class="group-card joinable">
+                                    <div class="group-avatar">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="group-info">
+                                        <h5>متطوعو القاهرة</h5>
+                                        <p>156 عضو • مجموعة عامة</p>
+                                        <div class="group-description">
+                                            <span>مجموعة للمتطوعين في محافظة القاهرة</span>
+                                        </div>
+                                    </div>
+                                    <div class="group-actions">
+                                        <button class="btn-outline" onclick="joinGroup('cairo-volunteers')">انضم</button>
+                                    </div>
+                                </div>
+
+                                <div class="group-card joinable">
+                                    <div class="group-avatar">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                    <div class="group-info">
+                                        <h5>منسقي الفعاليات - القاهرة</h5>
+                                        <p>23 عضو • مجموعة خاصة</p>
+                                        <div class="group-description">
+                                            <span>لمنسقي الفعاليات في القاهرة</span>
+                                        </div>
+                                    </div>
+                                    <div class="group-actions">
+                                        <button class="btn-outline" onclick="requestJoinGroup('cairo-coordinators')">طلب انضمام</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Campaign Groups -->
+                        <div class="campaign-groups-section">
+                            <h4>مجموعات الحملات</h4>
+                            <div class="campaign-groups">
+                                <div class="group-card joinable">
+                                    <div class="group-avatar">
+                                        <i class="fas fa-seedling"></i>
+                                    </div>
+                                    <div class="group-info">
+                                        <h5>حملة زراعة مليون شجرة</h5>
+                                        <p>89 عضو • حملة نشطة</p>
+                                        <div class="campaign-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 65%"></div>
+                                            </div>
+                                            <span>650,000 شجرة مزروعة</span>
+                                        </div>
+                                    </div>
+                                    <div class="group-actions">
+                                        <button class="btn-outline" onclick="joinGroup('tree-campaign')">انضم</button>
+                                    </div>
+                                </div>
+
+                                <div class="group-card joinable">
+                                    <div class="group-avatar">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="group-info">
+                                        <h5>التعليم للجميع</h5>
+                                        <p>67 عضو • حملة تعليمية</p>
+                                        <div class="campaign-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 42%"></div>
+                                            </div>
+                                            <span>420 طفل تم تعليمهم</span>
+                                        </div>
+                                    </div>
+                                    <div class="group-actions">
+                                        <button class="btn-outline" onclick="joinGroup('education-campaign')">انضم</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activities -->
+                        <div class="recent-activities-section">
+                            <h4>النشاطات الأخيرة</h4>
+                            <div class="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-avatar">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23ff6b35'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E" alt="سارة">
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>سارة أحمد</strong> انضمت إلى مجموعة <strong>حماية البيئة</strong></p>
+                                        <span class="activity-time">منذ 5 دقائق</span>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-avatar">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%2328a745'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EM%3C/text%3E%3C/svg%3E" alt="محمد">
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>محمد علي</strong> شارك صورة من فعالية <strong>تنظيف الشاطئ</strong></p>
+                                        <span class="activity-time">منذ 15 دقيقة</span>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-avatar">
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23007bff'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='white' font-size='30' font-family='Arial'%3EK%3C/text%3E%3C/svg%3E" alt="خالد">
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>خالد محمود</strong> أضاف حدث جديد: <strong>ورشة الإسعافات الأولية</strong></p>
+                                        <span class="activity-time">منذ ساعة</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+
+                </div>
+                </div>
+            </div>
+
+            <!-- Global Bottom Navigation -->
+            <div class="bottom-nav">
+                <div class="nav-item active" onclick="navigateTo('home-page')">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('events-page')">
+                    <i class="fas fa-calendar"></i>
+                    <span>الأحداث</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('rewards-page')">
+                    <i class="fas fa-gift"></i>
+                    <span>المكافآت</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('communities-page')">
+                    <i class="fas fa-users"></i>
+                    <span>المجتمع</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('settings-page')">
+                    <i class="fas fa-cog"></i>
+                    <span>الإعدادات</span>
+                </div>
+            </div>
+    </div>
+
+    <!-- Modals and Overlays -->
+    
+    <!-- Create Post Modal -->
+    <div class="modal" id="create-post-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>إنشاء منشور جديد</h3>
+                <button class="close-btn" onclick="closeModal('create-post-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="post-form" onsubmit="event.preventDefault(); submitPostForm();">
+                    <div class="form-group">
+                        <label>نوع المنشور</label>
+                        <select id="post-type" required>
+                            <option value="">اختر نوع المنشور</option>
+                            <option value="celebration">احتفال (زواج، تخرج، إنجاز)</option>
+                            <option value="volunteering">تطوع (فعالية، تدريب)</option>
+                            <option value="photo">صورة</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>عنوان المنشور</label>
+                        <input type="text" id="post-title" placeholder="أدخل عنوان المنشور" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>محتوى المنشور</label>
+                        <textarea id="post-content" placeholder="اكتب محتوى المنشور هنا..." rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>التصنيف</label>
+                        <select id="post-category" required>
+                            <option value="">اختر التصنيف</option>
+                            <option value="announcements">إعلانات</option>
+                            <option value="achievements">إنجازات</option>
+                            <option value="events">فعاليات</option>
+                        </select>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('create-post-modal')">إلغاء</button>
+                        <button type="submit" class="btn-primary">نشر المنشور</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Event Modal -->
+    <div class="modal" id="create-event-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>إنشاء فعالية جديدة</h3>
+                <button class="close-btn" onclick="closeModal('create-event-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="event-form" onsubmit="event.preventDefault(); submitEventForm();">
+                    <div class="form-group">
+                        <label>عنوان الفعالية</label>
+                        <input type="text" id="event-title" placeholder="أدخل عنوان الفعالية" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>وصف الفعالية</label>
+                        <textarea id="event-description" placeholder="اكتب وصف الفعالية..." rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>نوع الفعالية</label>
+                        <select id="event-type" required>
+                            <option value="">اختر نوع الفعالية</option>
+                            <option value="caravan">قافلة</option>
+                            <option value="training">تدريب</option>
+                            <option value="social">اجتماعية</option>
+                            <option value="education">تعليمية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>التاريخ والوقت</label>
+                        <input type="datetime-local" id="event-datetime" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>الموقع</label>
+                        <input type="text" id="event-location" placeholder="أدخل موقع الفعالية" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>السعة</label>
+                        <input type="number" id="event-capacity" placeholder="عدد المتطوعين المطلوب" min="1" required>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('create-event-modal')">إلغاء</button>
+                        <button type="submit" class="btn-primary">إنشاء الفعالية</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Scanner Modal -->
+    <div class="modal" id="qr-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ماسح QR</h3>
+                <button class="close-btn" onclick="closeModal('qr-modal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="qr-scanner">
+                <div class="scanner-frame">
+                    <div class="scanner-line"></div>
+                </div>
+                <p>وجه الكاميرا نحو رمز QR</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="backend-core.js"></script>
+    <script src="services.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
