@@ -245,7 +245,10 @@ function navigateTo(pageId) {
 // Update Bottom Navigation Active State
 function updateBottomNavigation(pageId) {
     const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => item.classList.remove('active'));
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        item.removeAttribute('aria-current');
+    });
     
     // Map page IDs to navigation items (updated for new structure)
     const pageNavMap = {
@@ -259,6 +262,7 @@ function updateBottomNavigation(pageId) {
     const navIndex = pageNavMap[pageId];
     if (navIndex !== undefined && navItems[navIndex]) {
         navItems[navIndex].classList.add('active');
+        navItems[navIndex].setAttribute('aria-current', 'page');
     }
     
     // Update page title for better UX
@@ -1025,17 +1029,30 @@ function closeModal(modalId) {
     }
 }
 
-// Toast Notification System
+// Toast Notification System (Consolidated, ARIA-friendly)
 function showToast(message, type = 'success') {
     const toast = document.getElementById('toast');
-    if (toast) {
-        toast.textContent = message;
-        toast.className = `toast ${type} show`;
-        
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 3000);
+    if (!toast) return;
+    
+    // Update ARIA attributes for assistive tech
+    toast.setAttribute('aria-live', (type === 'error' || type === 'warning') ? 'assertive' : 'polite');
+    toast.setAttribute('aria-atomic', 'true');
+    
+    // Update content and styling
+    toast.textContent = message;
+    toast.className = `toast ${type}`;
+    
+    // Trigger reflow then show for CSS transition
+    void toast.offsetWidth;
+    toast.classList.add('show');
+    
+    // Debounce hide timeout
+    if (window.__toastTimeoutId) {
+        clearTimeout(window.__toastTimeoutId);
     }
+    window.__toastTimeoutId = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
 }
 
 // Filter and Search Functions
@@ -2705,6 +2722,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize user role (you can get this from your authentication system)
     initializeUserRole('user');
+
+    // Example: show skeletons while loading initial data
+    const skeletonLists = document.querySelectorAll('[data-skeleton-list]');
+    skeletonLists.forEach(list => {
+        const count = Number(list.dataset.skeletonCount || 3);
+        const placeholder = document.createDocumentFragment();
+        for (let i = 0; i < count; i++) {
+            const card = document.createElement('div');
+            card.className = 'skeleton skeleton-card';
+            placeholder.appendChild(card);
+        }
+        list.appendChild(placeholder);
+    });
 });
 
 // Enhanced Modal System
@@ -2738,20 +2768,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Enhanced Toast System
-function showToast(message, type = 'info') {
-    const toast = document.getElementById('toast');
-    if (!toast) return;
-    
-    toast.textContent = message;
-    toast.className = `toast ${type}`;
-    toast.style.display = 'block';
-    
-    // Auto hide after 3 seconds
-    setTimeout(() => {
-        toast.style.display = 'none';
-    }, 3000);
-}
+// Enhanced Toast System (removed duplicate; see consolidated showToast above)
 
 // Role-based Access Control
 function initializeUserRole(role) {
@@ -2839,22 +2856,30 @@ function initializeTheme() {
 function applyTheme(theme) {
     const root = document.documentElement;
     
+    // Normalize theme classes on :root
+    root.classList.remove('light-theme', 'dark-theme');
     if (theme === THEME_MODES.DARK) {
         root.classList.add('dark-theme');
-        root.classList.remove('light-theme');
     } else {
         root.classList.add('light-theme');
-        root.classList.remove('dark-theme');
     }
     
-    // Update theme toggle buttons
+    // Update theme toggle buttons and simple buttons
     const themeToggles = document.querySelectorAll('.theme-toggle');
     themeToggles.forEach(toggle => {
         const input = toggle.querySelector('input');
-        if (input) {
-            input.checked = theme === THEME_MODES.DARK;
+        if (input) input.checked = theme === THEME_MODES.DARK;
+    });
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    themeButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick')?.includes(theme)) {
+            btn.classList.add('active');
         }
     });
+    
+    // Persist
+    localStorage.setItem('theme', theme);
 }
 
 function toggleTheme() {

@@ -536,6 +536,12 @@ small { font-size: 12px; color: var(--text-light); }
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
+.btn-primary:disabled {
+    background: #9abcf8;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 .btn-secondary {
     background: var(--secondary-white);
     color: var(--primary-blue);
@@ -556,6 +562,11 @@ small { font-size: 12px; color: var(--text-light); }
     background: var(--primary-blue);
     color: white;
     transform: translateY(-1px);
+}
+
+.btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .btn-danger {
@@ -3255,12 +3266,13 @@ a:focus,
 
 /* Skeleton Loading */
 .skeleton {
-    background: linear-gradient(90deg, var(--background-light) 25%, #e0e0e0 50%, var(--background-light) 75%);
+    background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
     background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    animation: shimmer 1.2s infinite;
+    border-radius: 8px;
 }
 
-@keyframes loading {
+@keyframes shimmer {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
 }
@@ -3269,12 +3281,14 @@ a:focus,
     height: 16px;
     margin-bottom: 8px;
     border-radius: 4px;
+    width: 100%;
 }
 
 .skeleton-title {
     height: 24px;
     margin-bottom: 12px;
     border-radius: 4px;
+    width: 60%;
 }
 
 .skeleton-avatar {
@@ -3287,6 +3301,7 @@ a:focus,
     height: 120px;
     margin-bottom: 15px;
     border-radius: 12px;
+    width: 100%;
 }
 
 /* Explore Opportunities Page */
