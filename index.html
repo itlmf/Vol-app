@@ -1670,6 +1670,10 @@
                             <i class="fas fa-users"></i>
                             <span>المجتمع</span>
                         </div>
+                        <div class="nav-item" onclick="navigateTo('elearning-page')">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>التعلم الإلكتروني</span>
+                        </div>
                         <div class="nav-item" onclick="navigateTo('settings-page')">
                             <i class="fas fa-cog"></i>
                             <span>الإعدادات</span>
@@ -2107,6 +2111,10 @@
                         <div class="nav-item" onclick="navigateTo('communities-page')">
                             <i class="fas fa-users"></i>
                             <span>المجتمع</span>
+                        </div>
+                        <div class="nav-item" onclick="navigateTo('elearning-page')">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>التعلم الإلكتروني</span>
                         </div>
                     </div>
                 </div>
@@ -2698,6 +2706,264 @@
                     <!-- Bottom Navigation -->
 
                 </div>
+
+                <!-- E-Learning Page -->
+                <div class="page" id="elearning-page">
+                    <div class="page-header">
+                        <button class="back-btn" onclick="navigateTo('home-page')">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <h2>التعلم الإلكتروني</h2>
+                        <div class="header-actions">
+                            <button class="btn-outline" onclick="openCourseModal()">
+                                <i class="fas fa-plus"></i>
+                                إضافة دورة
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="elearning-container">
+                        <!-- Learning Progress -->
+                        <div class="learning-progress-section">
+                            <h4>تقدمك في التعلم</h4>
+                            <div class="progress-overview">
+                                <div class="progress-card">
+                                    <div class="progress-icon">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div class="progress-info">
+                                        <h5>الدورات المكتملة</h5>
+                                        <span class="progress-number">8</span>
+                                        <span class="progress-label">من أصل 12</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 67%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-card">
+                                    <div class="progress-icon">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div class="progress-info">
+                                        <h5>الشهادات المحصل عليها</h5>
+                                        <span class="progress-number">5</span>
+                                        <span class="progress-label">شهادة</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-card">
+                                    <div class="progress-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="progress-info">
+                                        <h5>ساعات التعلم</h5>
+                                        <span class="progress-number">42</span>
+                                        <span class="progress-label">ساعة</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course Categories -->
+                        <div class="course-categories">
+                            <h4>فئات الدورات</h4>
+                            <div class="categories-grid">
+                                <div class="category-card" onclick="filterCourses('leadership')">
+                                    <div class="category-icon">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <h5>القيادة</h5>
+                                    <span class="course-count">12 دورة</span>
+                                </div>
+                                
+                                <div class="category-card" onclick="filterCourses('volunteering')">
+                                    <div class="category-icon">
+                                        <i class="fas fa-hands-helping"></i>
+                                    </div>
+                                    <h5>العمل التطوعي</h5>
+                                    <span class="course-count">8 دورات</span>
+                                </div>
+                                
+                                <div class="category-card" onclick="filterCourses('communication')">
+                                    <div class="category-icon">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <h5>التواصل</h5>
+                                    <span class="course-count">6 دورات</span>
+                                </div>
+                                
+                                <div class="category-card" onclick="filterCourses('management')">
+                                    <div class="category-icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                    <h5>الإدارة</h5>
+                                    <span class="course-count">10 دورات</span>
+                                </div>
+                                
+                                <div class="category-card" onclick="filterCourses('technology')">
+                                    <div class="category-icon">
+                                        <i class="fas fa-laptop"></i>
+                                    </div>
+                                    <h5>التكنولوجيا</h5>
+                                    <span class="course-count">15 دورة</span>
+                                </div>
+                                
+                                <div class="category-card" onclick="filterCourses('personal')">
+                                    <div class="category-icon">
+                                        <i class="fas fa-user-graduate"></i>
+                                    </div>
+                                    <h5>التنمية الشخصية</h5>
+                                    <span class="course-count">9 دورات</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Featured Courses -->
+                        <div class="featured-courses">
+                            <h4>الدورات المميزة</h4>
+                            <div class="courses-grid">
+                                <div class="course-card featured">
+                                    <div class="course-image">
+                                        <i class="fas fa-play-circle"></i>
+                                        <div class="course-badge">مميز</div>
+                                    </div>
+                                    <div class="course-content">
+                                        <h5>أساسيات القيادة التطوعية</h5>
+                                        <p>تعلم المهارات الأساسية للقيادة في العمل التطوعي</p>
+                                        <div class="course-meta">
+                                            <span class="course-duration">
+                                                <i class="fas fa-clock"></i>
+                                                4 ساعات
+                                            </span>
+                                            <span class="course-level">
+                                                <i class="fas fa-signal"></i>
+                                                مبتدئ
+                                            </span>
+                                        </div>
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 75%"></div>
+                                            </div>
+                                            <span class="progress-text">75% مكتمل</span>
+                                        </div>
+                                        <button class="btn-primary" onclick="continueCourse('leadership-basics')">
+                                            <i class="fas fa-play"></i>
+                                            متابعة التعلم
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="course-card">
+                                    <div class="course-image">
+                                        <i class="fas fa-play-circle"></i>
+                                    </div>
+                                    <div class="course-content">
+                                        <h5>إدارة المشاريع التطوعية</h5>
+                                        <p>تعلم كيفية تخطيط وتنفيذ المشاريع التطوعية بنجاح</p>
+                                        <div class="course-meta">
+                                            <span class="course-duration">
+                                                <i class="fas fa-clock"></i>
+                                                6 ساعات
+                                            </span>
+                                            <span class="course-level">
+                                                <i class="fas fa-signal"></i>
+                                                متوسط
+                                            </span>
+                                        </div>
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 30%"></div>
+                                            </div>
+                                            <span class="progress-text">30% مكتمل</span>
+                                        </div>
+                                        <button class="btn-primary" onclick="continueCourse('project-management')">
+                                            <i class="fas fa-play"></i>
+                                            متابعة التعلم
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="course-card">
+                                    <div class="course-image">
+                                        <i class="fas fa-play-circle"></i>
+                                    </div>
+                                    <div class="course-content">
+                                        <h5>التواصل الفعال في الفرق</h5>
+                                        <p>تطوير مهارات التواصل والعمل الجماعي</p>
+                                        <div class="course-meta">
+                                            <span class="course-duration">
+                                                <i class="fas fa-clock"></i>
+                                                3 ساعات
+                                            </span>
+                                            <span class="course-level">
+                                                <i class="fas fa-signal"></i>
+                                                مبتدئ
+                                            </span>
+                                        </div>
+                                        <div class="course-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: 100%"></div>
+                                            </div>
+                                            <span class="progress-text">مكتمل</span>
+                                        </div>
+                                        <button class="btn-secondary" onclick="viewCertificate('communication')">
+                                            <i class="fas fa-certificate"></i>
+                                            عرض الشهادة
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="recent-activity">
+                            <h4>النشاط الأخير</h4>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <div class="activity-icon completed">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h6>أكملت دورة "التواصل الفعال"</h6>
+                                        <p>منذ ساعتين</p>
+                                    </div>
+                                    <div class="activity-badge">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-item">
+                                    <div class="activity-icon progress">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h6>بدأت دورة "إدارة المشاريع"</h6>
+                                        <p>منذ يومين</p>
+                                    </div>
+                                    <div class="activity-badge">
+                                        <span class="progress-percent">30%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="activity-item">
+                                    <div class="activity-icon completed">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h6>حصلت على شهادة "القيادة"</h6>
+                                        <p>منذ أسبوع</p>
+                                    </div>
+                                    <div class="activity-badge">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Navigation -->
+                </div>
                 </div>
             </div>
 
@@ -2718,6 +2984,10 @@
                 <div class="nav-item" onclick="navigateTo('communities-page')">
                     <i class="fas fa-users"></i>
                     <span>المجتمع</span>
+                </div>
+                <div class="nav-item" onclick="navigateTo('elearning-page')">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>التعلم الإلكتروني</span>
                 </div>
                 <div class="nav-item" onclick="navigateTo('settings-page')">
                     <i class="fas fa-cog"></i>

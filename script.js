@@ -3232,3 +3232,53 @@ function registerEvent(button) {
         setTimeout(() => eventCard.classList.remove('fade-in'), 300);
     }, 1500);
 }
+
+// E-Learning Functions
+function filterCourses(category) {
+    console.log('Filtering courses by category:', category);
+    // This would filter the courses based on the selected category
+    // For now, we'll just show a toast notification
+    showToast(`تم تصفية الدورات حسب: ${getCategoryName(category)}`, 'info');
+}
+
+function getCategoryName(category) {
+    const categoryNames = {
+        'leadership': 'القيادة',
+        'volunteering': 'العمل التطوعي',
+        'communication': 'التواصل',
+        'management': 'الإدارة',
+        'technology': 'التكنولوجيا',
+        'personal': 'التنمية الشخصية'
+    };
+    return categoryNames[category] || category;
+}
+
+function continueCourse(courseId) {
+    console.log('Continuing course:', courseId);
+    showToast('جاري فتح الدورة...', 'info');
+    // This would open the course content
+    // For now, we'll simulate opening a course
+    setTimeout(() => {
+        showToast('تم فتح الدورة بنجاح!', 'success');
+    }, 1000);
+}
+
+function viewCertificate(courseId) {
+    console.log('Viewing certificate for course:', courseId);
+    showToast('جاري فتح الشهادة...', 'info');
+    // This would open the certificate
+    // For now, we'll simulate opening a certificate
+    setTimeout(() => {
+        showToast('تم فتح الشهادة بنجاح!', 'success');
+    }, 1000);
+}
+
+function openCourseModal() {
+    console.log('Opening course creation modal');
+    showToast('جاري فتح نموذج إضافة دورة...', 'info');
+    // This would open a modal for creating a new course
+    // For now, we'll just show a notification
+    setTimeout(() => {
+        showToast('نموذج إضافة دورة جديد قريباً!', 'info');
+    }, 1000);
+}
