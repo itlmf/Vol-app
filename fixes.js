@@ -5,17 +5,17 @@
 // 1. THEME SYSTEM FIX
 // ========================================
 
-// Replace the existing applyTheme function
+// Replace the existing applyTheme function (unify with root element)
 function applyTheme(theme) {
-    const body = document.body;
+    const root = document.documentElement;
     
     // Remove all theme classes first
-    body.classList.remove('light-theme', 'dark-theme');
+    root.classList.remove('light-theme', 'dark-theme');
     
     if (theme === THEME_MODES.DARK) {
-        body.classList.add('dark-theme');
+        root.classList.add('dark-theme');
     } else {
-        body.classList.add('light-theme');
+        root.classList.add('light-theme');
     }
     
     // Update theme toggle buttons
